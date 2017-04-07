@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Book List
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list inset>
+    <ion-item>
+      <ion-label>Category</ion-label>
+      <ion-input [(ngModel)]="categoryName" type="text"></ion-input>
+    </ion-item>
+  </ion-list>
+  <div padding>
+    <button ion-button block (click)="getBooks()">Search</button>
+  </div>
+  <ion-card *ngFor="let repo of foundBooks" (click)="goToDetails(repo)">
+    <ion-card-header>
+      {{ repo.name }}
+    </ion-card-header>
+    <ion-card-content>
+      {{ repo.description }}
+    </ion-card-content>
+  </ion-card>
+</ion-content>
