@@ -16,12 +16,13 @@
   <div padding>
     <button ion-button block (click)="getBooks()">Search</button>
   </div>
-  <ion-card *ngFor="let repo of foundBooks" (click)="goToDetails(repo)">
+  <ion-card *ngFor="let book of foundBooks" (click)="goToDetails(book)">
     <ion-card-header>
-      {{ repo.name }}
+      {{ book.name }}
     </ion-card-header>
     <ion-card-content>
-      {{ repo.description }}
+      {{ book.author}}
+      {{ book.description }}
     </ion-card-content>
   </ion-card>
 </ion-content>

@@ -7,5 +7,6 @@ export interface IAppConfig {
 }
 
 export const AppConfig: IAppConfig = {
-  apiEndpoint: "http://reader.thanqminh.com/api"
+  //apiEndpoint: "http://reader.thanqminh.com/api"
+  apiEndpoint: "http://localhost:8100/api"
 };

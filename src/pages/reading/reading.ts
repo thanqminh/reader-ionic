@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { BookService } from '../../services/book';
-import { ReadingPage} from '../pages/reading/reading';
 
 @Component({
-  selector: 'page-details',
-  templateUrl: 'details.html',
+  selector: 'page-reading',
+  templateUrl: 'reading.html',
   providers: [BookService]
 })
-export class DetailsPage {
-  public details = {};
+export class ReadingPage {
+  public toc = {};
   public book;
 
   constructor(private bookService: BookService,
@@ -18,21 +17,16 @@ export class DetailsPage {
 
     this.book = navParams.get('book');
 
-    this.bookService.getDetails(this.book).subscribe(
-      data => this.details = data.json(),
+    this.bookService.getToc(this.book).subscribe(
+      data => this.toc = data.json(),
       err => {
         if (err.status == 404) {
-          this.details['description'] = 'Cannot find the selected book :';
+          this.toc = [];
         } else {
           console.error(err);
         }
       },
-      () => console.log('getDetails completed')
+      () => console.log('getToc completed')
     );
   }
-
-  goToReading(book) {
-    this.nav.push(ReadingPage, { book: book });
-  }
-
 }
