@@ -7,7 +7,7 @@ import { APP_CONFIG, AppConfig } from '../app.config';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { DetailsPage } from '../pages/details/details';
-import { ReadingPage} from '../pages/reading/reading';
+import { ReadingPage } from '../pages/reading/reading';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';

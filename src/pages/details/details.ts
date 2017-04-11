@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { BookService } from '../../services/book';
-import { ReadingPage} from '../pages/reading/reading';
+import { ReadingPage} from '../reading/reading';
 
 @Component({
   selector: 'page-details',

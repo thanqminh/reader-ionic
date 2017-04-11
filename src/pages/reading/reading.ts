@@ -28,5 +28,7 @@ export class ReadingPage {
       },
       () => console.log('getToc completed')
     );
+
+
   }
 }

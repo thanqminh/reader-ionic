@@ -8,5 +8,13 @@
 </ion-header>
 
 <ion-content>
-  abc
+  <ion-card *ngFor="let section of toc">
+    <ion-card-header>
+      {{ book.name }}
+    </ion-card-header>
+    <ion-card-content>
+      {{ book.author}}
+      {{ book.description }}
+    </ion-card-content>
+  </ion-card>
 </ion-content>
