@@ -8,5 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <reading-section *ngFor="let section of sectionArr" [section]="section"></reading-section>
+  <ng-container *ngFor="let section of sectionArr">
+    <reading-section [section]="section" [book]="book"></reading-section>
+  </ng-container>
 </ion-content>

@@ -9,70 +9,53 @@ import { BookService } from '../../services/book';
 })
 export class ReadingPage {
   public toc = [];
-  public tocHeaders = [];
+  public headerArr = [];
+  public headerHash = {};
   public book;
   public sectionHash = {};
   public sectionArr = [];
 
   parseToc(tocArr, parentIndex) {
     for(var i=0;i<tocArr.length;i++){
-      console.log(parentIndex);
       let index = JSON.parse(JSON.stringify(parentIndex));
       index.push(i);
-      console.log(index);
       if (typeof tocArr[i] == "string") {
-        this.tocHeaders.push({"index": index, "name": tocArr[i], "leaf": true});
-        this.bookService.getSection(this.book, index).subscribe(
-          data => {
-            var section = {
-              "header": tocArr[i],
-              "content": data["_body"]
-            };
-            this.sectionHash[index.join("-")] = section;
-            this.sectionArr.push(section);
-          },
-          err => {
-            if (err.status == 404) {
-              var section = {
-                "header": tocArr[i],
-                "content": ""
-              };
-            } else {
-              console.error(err);
-            }
-          },
-          () => console.log('getSection completed')
-        );
+        this.headerArr.push({"index": index, "name": tocArr[i], "leaf": true});
+        this.headerHash[index.join('-')] = tocArr[i];
+        var section = {
+          "index": index,
+          "header": this.headerHash[index.join('-')]
+        };
+        this.sectionHash[index.join("-")] = section;
+        this.sectionArr.push(section);
       }
       else {
-        console.log(Object.keys(tocArr[i])[0] + " is not leaf");
-        this.tocHeaders.push({"index": index, "name": Object.keys(tocArr[i])[0], "leaf": false});
+        this.headerArr.push({"index": index, "name": Object.keys(tocArr[i])[0], "leaf": false});
+        this.headerHash[index.join('-')] = {"name": Object.keys(tocArr[i])[0]};
         this.parseToc(tocArr[i][Object.keys(tocArr[i])[0]],index);
       }
     }
   }
 
   constructor(private bookService: BookService,
-              private nav: NavController,
-              private navParams: NavParams) {
+            private nav: NavController,
+            private navParams: NavParams) {
 
-    this.book = navParams.get('book');
+  this.book = navParams.get('book');
 
-    this.bookService.getToc(this.book).subscribe(
-      data => {
-        this.toc = data.json();
-        console.log(JSON.stringify(this.toc));
-        this.parseToc(this.toc,[]);
-        console.log(this.tocHeaders);
-      },
-      err => {
-        if (err.status == 404) {
-          this.toc = [];
-        } else {
-          console.error(err);
-        }
-      },
-      () => console.log('getToc completed')
-    );
-  }
+  this.bookService.getToc(this.book).subscribe(
+    data => {
+      this.toc = data.json();
+      this.parseToc(this.toc,[]);
+    },
+    err => {
+      if (err.status == 404) {
+        this.toc = [];
+      } else {
+        console.error(err);
+      }
+    },
+    () => console.log('getToc completed')
+  );
+}
 }

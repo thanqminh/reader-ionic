@@ -8,7 +8,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { DetailsPage } from '../pages/details/details';
 import { ReadingPage } from '../pages/reading/reading';
-import { ReadingSection } from '../pages/reading/reading-section';
+import { ReadingSection } from '../pages/reading/section';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';

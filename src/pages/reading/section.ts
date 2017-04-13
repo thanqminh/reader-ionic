@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { BookService } from '../../services/book';
 
 @Component({
@@ -7,6 +7,28 @@ import { BookService } from '../../services/book';
   providers: [BookService]
 })
 
-export class ReadingSection {
+export class ReadingSection implements OnChanges {
   @Input() section;
+  @Input() book;
+
+  constructor(private bookService: BookService) {
+  }
+
+  ngOnChanges() {
+    if (this.section && this.book && !this.section.content) {
+      this.bookService.getSection(this.book, this.section.index).subscribe(
+        data => {
+          this.section["content"] = data["_body"];
+        },
+        err => {
+          if (err.status == 404) {
+            console.error(`no content found for ${this.section.index.join('-')}`);
+          } else {
+            console.error(err);
+          }
+        },
+        () => console.log('getSection completed')
+      );
+    }
+  }
 }
