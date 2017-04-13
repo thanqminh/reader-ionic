@@ -43,4 +43,10 @@ export class BookService {
       book.url = this.removeVNAccent(book.name);
     return this.http.get(`${this.config.apiEndpoint}/books/${book.url}/toc.json`);
   }
+
+  getSection(book,index){
+    if (!book.url)
+      book.url = this.removeVNAccent(book.name);
+    return this.http.get(`${this.config.apiEndpoint}/books/${book.url}/${index.join("-")}.txt`);
+  }
 }
