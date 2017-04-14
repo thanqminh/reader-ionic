@@ -2,7 +2,7 @@
   <ion-card-header>
     {{ section.header }}
   </ion-card-header>
-  <ion-card-content>
+  <ion-card-content [ngClass]="'selectable'">
     {{ section.content }}
   </ion-card-content>
 </ion-card>
