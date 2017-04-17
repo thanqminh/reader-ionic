@@ -31,4 +31,22 @@ export class ReadingSection implements OnChanges {
       );
     }
   }
+
+  toggle(event) {
+    var target = event.target || event.srcElement || event.currentTarget;
+    if (target.className != "title") {
+      var title = target.getElementsByClassName("title");
+      if (!title.length) {
+        var showing = document.getElementsByClassName("title");
+        if (showing.length>0)
+          showing[0].parentNode.removeChild(showing[0]);
+        title = document.createElement("span");
+        title.className = "title";
+        title.innerHTML = target.attributes['title'].value;
+        target.appendChild(title);
+      } else {
+        target.removeChild(target.childNodes[1]);
+      }
+    }
+  }
 }

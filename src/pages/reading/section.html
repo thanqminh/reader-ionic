@@ -3,6 +3,7 @@
     {{ section.header }}
   </ion-card-header>
   <ion-card-content [ngClass]="'selectable'">
+    <span class="more_info" title="观<br>quán<br>guàn" (click)="toggle($event)">觀</span><span class="more_info" title="tự<br>zi" (click)="toggle($event)">自</span>
     {{ section.content }}
   </ion-card-content>
 </ion-card>
