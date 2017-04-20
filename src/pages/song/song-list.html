@@ -9,7 +9,7 @@
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let song of foundSongs" (click)="goToSong(song)">
-      {{ song.name }}
+      {{ song.title }}
       <ion-icon name='musical-notes' item-left></ion-icon>
       <ion-note item-right>{{song.singer}}</ion-note>
     </ion-item>

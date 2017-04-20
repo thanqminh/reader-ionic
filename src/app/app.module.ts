@@ -12,6 +12,7 @@ import { ReadingPage } from '../pages/reading/reading';
 import { ReadingSection } from '../pages/reading/section';
 import { SongListPage } from '../pages/song/song-list';
 import { SongPage } from '../pages/song/song';
+import { TooltipText} from '../pages/tooltip/tooltip-text';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -28,7 +29,8 @@ import { LanguageService } from '../services/language';
     ReadingPage,
     ReadingSection,
     SongListPage,
-    SongPage
+    SongPage,
+    TooltipText
   ],
   imports: [
     IonicModule.forRoot(MyApp)

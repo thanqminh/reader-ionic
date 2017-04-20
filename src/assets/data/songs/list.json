@@ -1,7 +1,8 @@
 [
   {
-    "name": "冲动的惩罚",
+    "title": "冲动的惩罚",
     "singer": "刀郎",
-    "slug": "chong-dong-de-cheng-fa-dao-lang"
+    "slug": "chong-dong-de-cheng-fa-dao-lang",
+    "availableLyricLocales": ["tw","cn","vi","py"]
   }
 ]

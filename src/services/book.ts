@@ -2,8 +2,6 @@ import {Injectable, Inject} from '@angular/core';
 import { Http } from '@angular/http';
 import { APP_CONFIG, IAppConfig} from '../app.config';
 
-import { Book } from '../models/book';
-
 @Injectable()
 export class BookService {
   constructor(private http: Http, @Inject(APP_CONFIG) private config: IAppConfig) {

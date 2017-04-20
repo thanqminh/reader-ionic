@@ -9,21 +9,15 @@ import { SongService } from '../../services/song';
 })
 export class SongPage {
   public song;
-  public lyric;
   public textSize;
+  public primaryLocale;
 
   constructor(private songService: SongService,
               private nav: NavController,
               private navParams: NavParams) {
     this.textSize = 30;
+    this.primaryLocale = "tw";
     this.song = navParams.get('song');
-    this.songService.getSongLyric(this.song).subscribe(
-      data => {
-        this.lyric = data["_body"];
-      },
-      err => console.error(err),
-      () => console.log('getLyric completed')
-    );
   }
 
   decreaseTextSize(textSize) {

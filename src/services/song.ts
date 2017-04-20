@@ -2,8 +2,6 @@ import {Injectable, Inject} from '@angular/core';
 import { Http } from '@angular/http';
 import { APP_CONFIG, IAppConfig} from '../app.config';
 
-import { Song } from '../models/song';
-
 @Injectable()
 export class SongService {
   constructor(private http: Http, @Inject(APP_CONFIG) private config: IAppConfig) {
@@ -14,7 +12,7 @@ export class SongService {
     return songs;
   }
 
-  getSongLyric(song) {
-    return this.http.get(`${this.config.apiEndpoint}/songs/${song.slug}.txt`);
+  getSongLyricText(song,locale) {
+    return this.http.get(`${this.config.apiEndpoint}/songs/${song.slug}/${locale}.txt`);
   }
 }

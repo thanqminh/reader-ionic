@@ -1,0 +1,12 @@
+.more_info {
+  position: relative;
+}
+
+.more_info .tooltip {
+  position: absolute;
+  background: silver;
+  padding: 4px;
+  left: 0;
+  white-space: nowrap;
+  z-index: 1;
+}

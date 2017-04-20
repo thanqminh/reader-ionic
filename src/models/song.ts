@@ -1,7 +1,6 @@
 export class Song {
-  name: string;
-  lyric: string;
-  author: string;
-  singer: string;
+  title: string;
+  artist: string;
+  availableLyrics: string[];
   url: string;
 }

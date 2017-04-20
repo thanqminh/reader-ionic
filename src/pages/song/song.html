@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      {{ song.name}}
+      {{ song.title}}
     </ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="decreaseTextSize()" >
@@ -15,7 +15,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-card [style.font-size.px]="textSize" >
-    {{ lyric }}
+  <ion-card [style.font-size.px]="textSize" [ngClass]="'selectable'" class="padbot_200">
+    <tooltip-text [primaryLocale]="primaryLocale" [song]="song" [textSize]="textSize"></tooltip-text>
   </ion-card>
 </ion-content>
