@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{ song.name}}
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="decreaseTextSize()" >
+        <ion-icon name='remove'></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="increaseTextSize()" >
+        <ion-icon name='add' ></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card [style.font-size.px]="textSize" >
+    {{ lyric }}
+  </ion-card>
+</ion-content>

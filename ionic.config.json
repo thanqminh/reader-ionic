@@ -1,6 +1,7 @@
 {
-  "name": "ionic2-tutorial-github",
+  "name": "reader-ionic",
   "app_id": "",
   "v2": true,
-  "typescript": true
+  "typescript": true,
+  "textSizeDefault": 30
 }

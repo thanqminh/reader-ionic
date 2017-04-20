@@ -1,32 +1,22 @@
 import { Component } from "@angular/core";
-import { BookService } from '../../services/book';
 import { NavController } from 'ionic-angular';
-import { DetailsPage } from '../details/details';
+import { BookPage } from '../book/book';
+import { SongListPage } from '../song/song-list';
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html',
-  providers: [BookService]
+  templateUrl: 'home.html'
 })
 export class HomePage {
-  public foundBooks;
-  public categoryName;
 
-  constructor(private bookService: BookService,
-              private nav: NavController) {
+  constructor(private nav: NavController) {
   }
 
-  goToDetails(book) {
-    this.nav.push(DetailsPage, { book: book });
+  goToBook() {
+    this.nav.push(BookPage);
   }
 
-  getBooks() {
-    this.bookService.getBooks(this.categoryName).subscribe(
-      data => {
-        this.foundBooks = data.json();
-      },
-      err => console.error(err),
-      () => console.log('getBooks completed')
-    );
+  goToSong() {
+    this.nav.push(SongListPage);
   }
 }

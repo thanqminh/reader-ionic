@@ -1,28 +1,19 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Book List
+      Document Home
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list inset>
-    <ion-item>
-      <ion-label>Category</ion-label>
-      <ion-input [(ngModel)]="categoryName" type="text"></ion-input>
-    </ion-item>
-  </ion-list>
-  <div padding>
-    <button ion-button block (click)="getBooks()">Search</button>
-  </div>
-  <ion-card *ngFor="let book of foundBooks" (click)="goToDetails(book)">
-    <ion-card-header>
-      {{ book.name }}
-    </ion-card-header>
-    <ion-card-content>
-      {{ book.author}}
-      {{ book.description }}
-    </ion-card-content>
-  </ion-card>
+<ion-content padding>
+
+  <button ion-button full (click)="goToBook()">
+    Books
+  </button>
+
+  <button ion-button full (click)="goToSong()">
+    Songs
+  </button>
+
 </ion-content>
