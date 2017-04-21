@@ -11,6 +11,7 @@ export class SongPage {
   public song;
   public textSize;
   public primaryLocale;
+  public musicFileUrl;
 
   constructor(private songService: SongService,
               private nav: NavController,
@@ -18,6 +19,7 @@ export class SongPage {
     this.textSize = 30;
     this.primaryLocale = "tw";
     this.song = navParams.get('song');
+    this.musicFileUrl = this.songService.getMusicFileUrl(this.song);
   }
 
   decreaseTextSize(textSize) {

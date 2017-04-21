@@ -15,6 +15,11 @@
 </ion-header>
 
 <ion-content>
+  <ion-card>
+    <audio controls autoplay >
+      <source src="{{musicFileUrl}}">
+    </audio>
+  </ion-card>
   <ion-card [style.font-size.px]="textSize" [ngClass]="'selectable'" class="padbot_200">
     <tooltip-text [primaryLocale]="primaryLocale" [song]="song" [textSize]="textSize"></tooltip-text>
   </ion-card>

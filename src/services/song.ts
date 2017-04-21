@@ -12,7 +12,11 @@ export class SongService {
     return songs;
   }
 
-  getSongLyricText(song,locale) {
+  getLyricText(song,locale) {
     return this.http.get(`${this.config.apiEndpoint}/songs/${song.slug}/${locale}.txt`);
+  }
+
+  getMusicFileUrl(song,bitRate = 128) {
+    return `${this.config.apiEndpoint}/songs/${song.slug}/${bitRate}.mp3`;
   }
 }

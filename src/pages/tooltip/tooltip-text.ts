@@ -28,13 +28,13 @@ export class TooltipText {
     this.lyrics = {"tw":"","cn":"","vi":"","py":""};
     for (let locale in this.lyrics) {
       if (this.lyrics.hasOwnProperty(locale)) {
-        this.songService.getSongLyricText(this._song, locale).subscribe(
+        this.songService.getLyricText(this._song, locale).subscribe(
           data => {
             this.lyrics[locale] = data["_body"];
             this.render();
           },
           err => console.error(err),
-          () => console.log('getSongLyricText ' + locale + ' completed')
+          () => console.log('getLyricText ' + locale + ' completed')
         );
       }
     }
