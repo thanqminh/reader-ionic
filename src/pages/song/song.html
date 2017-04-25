@@ -4,6 +4,9 @@
       {{ song.title}} - {{song.singer}}
     </ion-title>
     <ion-buttons end>
+      <button ion-button (click)="switchLocale()" >
+        {{ primaryLocale }}
+      </button>
       <button ion-button icon-only (click)="decreaseTextSize()" >
         <ion-icon name='remove'></ion-icon>
       </button>

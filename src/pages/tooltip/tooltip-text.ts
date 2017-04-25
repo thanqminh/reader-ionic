@@ -105,6 +105,7 @@ export class TooltipText {
 
   public getTooltip(locale,tw,cn,vi,py) {
     var tooltip;
+    tw = tw.trim(); cn = cn.trim(); vi = vi.trim(); py = py.trim();
     switch (locale) {
       case "tw":
         if (tw!=cn)

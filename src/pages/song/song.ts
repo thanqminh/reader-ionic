@@ -31,4 +31,11 @@ export class SongPage {
     if (this.textSize < 100)
       this.textSize = this.textSize + 1;
   }
+
+  switchLocale() {
+    if (this.primaryLocale == "tw")
+      this.primaryLocale = "cn";
+    else
+      this.primaryLocale = "tw";
+  }
 }
