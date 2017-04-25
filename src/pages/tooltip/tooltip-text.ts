@@ -85,15 +85,19 @@ export class TooltipText {
     if (target.className != "tooltip") {
       var tooltip = target.getElementsByClassName("tooltip");
       if (!tooltip.length) {
+        target.className = "more_info hightlight";
         var showing = document.getElementsByClassName("tooltip");
-        if (showing.length>0)
+        if (showing.length>0) {
+          showing[0].parentElement.className = "more_info";
           showing[0].parentNode.removeChild(showing[0]);
+        }
         tooltip = document.createElement("span");
         tooltip.className = "tooltip";
         tooltip.innerHTML = target.attributes['title'].value.replace(/(?:\r\n|\r|\n)/g, '<br />');
         tooltip.style.top = 5 + this.textSize + "px";
         target.appendChild(tooltip);
       } else {
+        target.className = "more_info";
         target.removeChild(target.childNodes[1]);
       }
     }
