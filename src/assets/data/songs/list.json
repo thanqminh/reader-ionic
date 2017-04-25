@@ -2,7 +2,19 @@
   {
     "title": "冲动的惩罚",
     "singer": "刀郎",
-    "slug": "chong-dong-de-cheng-fa-dao-lang",
+    "slug": "xung-dong-dich-trung-phat-dao-lang",
+    "availableLyricLocales": ["tw","cn","vi","py"]
+  },
+  {
+    "title": "你的样子",
+    "singer": "羅大佑",
+    "slug": "ne-dich-dang-tu-la-dai-huu",
+    "availableLyricLocales": ["tw","cn","vi","py"]
+  },
+  {
+    "title": "其實不想走",
+    "singer": "周华健",
+    "slug": "ki-thuc-bat-tuong-tau-chu-hoa-kien",
     "availableLyricLocales": ["tw","cn","vi","py"]
   }
 ]
