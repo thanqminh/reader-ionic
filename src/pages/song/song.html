@@ -4,7 +4,7 @@
       {{ song.title}} - {{song.singer}}
     </ion-title>
     <ion-buttons end>
-      <button ion-button (click)="toggleTranslation()" *ngIf="song.translations" >
+      <button ion-button [style.color]="showTranslation? 'blue': '' " (click)="toggleTranslation()" *ngIf="song.translations" >
         vn
       </button>
       <button ion-button (click)="switchLocale()" >
