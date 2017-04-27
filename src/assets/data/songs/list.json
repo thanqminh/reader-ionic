@@ -15,7 +15,8 @@
   {
     "title": "你的样子",
     "singer": "羅大佑",
-    "slug": "ne-dich-dang-tu-la-dai-huu",
+    "slug": "ne-dich-dang-tu-lam-chi-huyen",
+    "translations": ["vn"],
     "availableLyricLocales": ["tw","cn","vi","py"]
   },
   {
