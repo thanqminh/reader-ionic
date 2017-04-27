@@ -104,13 +104,11 @@ export class TooltipText {
   }
 
   public getTranslationLine(index) {
-    var count = -1;
+    var count = 0;
     for (var i=index;i>=0;i--) {
       if (this.lyrics["tw"][i]=='\n') count++;
     }
-    if (count<0)
-      count = 0;
-    return this.translation[count];
+    return this.translation[count-1];
   }
 
   public toggle(event) {
