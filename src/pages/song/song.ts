@@ -1,6 +1,7 @@
-import { Component } from "@angular/core";
+import { Component, Inject } from "@angular/core";
 import { NavController, NavParams } from 'ionic-angular';
 import { SongService } from '../../services/song';
+import { APP_CONFIG, IAppConfig} from '../../app.config';
 
 @Component({
   selector: 'page-song',
@@ -16,8 +17,9 @@ export class SongPage {
 
   constructor(private songService: SongService,
               private nav: NavController,
-              private navParams: NavParams) {
-    this.textSize = 20;
+              private navParams: NavParams,
+              @Inject(APP_CONFIG) private config: IAppConfig) {
+    this.textSize = this.config.defaultTextSize;
     this.showTranslation = false;
     this.primaryLocale = "tw";
     this.song = navParams.get('song');
@@ -25,12 +27,12 @@ export class SongPage {
   }
 
   decreaseTextSize(textSize) {
-    if (this.textSize > 1)
+    if (this.textSize > this.config.textSizeDifference + 1)
       this.textSize = this.textSize - 1;
   }
 
   increaseTextSize(textSize) {
-    if (this.textSize < 100)
+    if (this.textSize < this.config.maxTextSize)
       this.textSize = this.textSize + 1;
   }
 

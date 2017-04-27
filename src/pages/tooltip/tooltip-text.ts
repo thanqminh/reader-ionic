@@ -1,6 +1,7 @@
-import {Component, Input} from "@angular/core";
+import {Component, Inject, Input} from "@angular/core";
 import { LanguageService } from '../../services/language';
 import { SongService } from '../../services/song';
+import { APP_CONFIG, IAppConfig} from '../../app.config';
 
 @Component({
   selector: 'tooltip-text',
@@ -16,7 +17,7 @@ export class TooltipText {
   @Input() showTranslation;
   private counter    = [0,0,0,0];
 
-  constructor(private languageService: LanguageService, private songService: SongService) {
+  constructor(private languageService: LanguageService, private songService: SongService, @Inject(APP_CONFIG) private config: IAppConfig) {
     this.translation = false;
   }
 
