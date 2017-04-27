@@ -1,6 +1,6 @@
 <ng-container *ngFor="let character of charArr;let i = index">
   <span [style.font-size.px]="textSize" *ngIf="character[primaryLocale].charCodeAt(0)!=10" class="more_info" (click)="toggle($event)" title="{{getTooltip(primaryLocale,character['tw'],character['cn'],character['vi'],character['py'])}}">{{character[primaryLocale]}}</span>
-  <ng-container *ngIf="character[primaryLocale]=='\n'">
+  <ng-container *ngIf="character[primaryLocale]=='\n' || i == charArr.length">
     <br />
     <ng-container *ngIf="translation">
       <span [hidden]="showTranslation" [style.font-size.px]="textSize-5">
