@@ -12,9 +12,12 @@ export class TooltipText {
   @Input() textSize;
   public charArr = [];
   public lyrics;
+  public translation;
+  @Input() showTranslation;
   private counter    = [0,0,0,0];
 
   constructor(private languageService: LanguageService, private songService: SongService) {
+    this.translation = false;
   }
 
   private _song = null;
@@ -22,6 +25,16 @@ export class TooltipText {
   set song(song) {
     this._song = song;
     this.getLyric();
+    if (this._song.translations) {
+      this.songService.getTranslationText(this._song, this._song.translations[0]).subscribe(
+        data => {
+          this.translation = data["_body"];
+          this.render();
+        },
+        err => console.error(err),
+        () => console.log('getTranslationText completed')
+      )
+    }
   }
 
   public getLyric() {
@@ -40,44 +53,61 @@ export class TooltipText {
     }
   }
 
-  public render() {
+  public checkAllLyricRetrieved() {
     if (this._song && this.lyrics) {
-      if (this.lyrics["tw"]!="" &&
-        this.lyrics["cn"]!="" &&
-        this.lyrics["vi"]!="" &&
-        this.lyrics["py"]!="" && this.counter[0]==0)
-      {
-        while (this.counter[0]<this.lyrics["tw"].length) {
-          var counter = this.counter;
-          var nextCounter = [this.counter[0] + 1,this.counter[1] + 1,this.counter[2] + 1,this.counter[3] + 1];
-          var tw = this.lyrics["tw"];
-          var cn = this.lyrics["cn"];
-          var vi = this.lyrics["vi"];
-          var py = this.lyrics["py"];
-
-          var nextWord = {
-            "tw": tw[counter[0]],
-            "cn": cn[counter[1]]
+      if (this.lyrics["tw"] != "" &&
+        this.lyrics["cn"] != "" &&
+        this.lyrics["vi"] != "" &&
+        this.lyrics["py"] != "" && this.counter[0] == 0) {
+          if (this._song.translations) {
+            if (this.translation)
+              return true;
+          } else {
+            return true;
           }
-
-          //check for special character
-          if (tw[this.counter[0]] != vi[this.counter[2]]) {
-            while (nextCounter[2] < vi.length && this.languageService.isVietnameseCharacter(vi[nextCounter[2]]))
-              nextCounter[2] = nextCounter[2] + 1;
-          }
-          nextWord["vi"] = vi.substring(counter[2],nextCounter[2]);
-
-          //check for special character
-          if (tw[this.counter[0]] != py[this.counter[3]]) {
-            while (nextCounter[3] < py.length && this.languageService.isChinesePinyinCharacter(py[nextCounter[3]]))
-              nextCounter[3] = nextCounter[3] + 1;
-          }
-          nextWord["py"] = py.substring(counter[3],nextCounter[3]);
-          this.charArr.push(nextWord);
-          this.counter = nextCounter;
-        }
       }
     }
+    return false;
+  }
+
+  public render() {
+    if (this.checkAllLyricRetrieved()) {
+      var tw = this.lyrics["tw"]; var cn = this.lyrics["cn"]; var vi = this.lyrics["vi"]; var py = this.lyrics["py"];
+      while (this.counter[0]<this.lyrics["tw"].length) {
+        var counter = this.counter;
+        var nextCounter = [counter[0] + 1,counter[1] + 1,counter[2] + 1,counter[3] + 1];
+        var nextWord = {
+          "tw": tw[counter[0]],
+          "cn": cn[counter[1]]
+        }
+
+        //check for special character
+        if (tw[this.counter[0]] != vi[this.counter[2]]) {
+          while (nextCounter[2] < vi.length && this.languageService.isVietnameseCharacter(vi[nextCounter[2]]))
+            nextCounter[2] = nextCounter[2] + 1;
+        }
+        nextWord["vi"] = vi.substring(counter[2],nextCounter[2]);
+
+        //check for special character
+        if (tw[this.counter[0]] != py[this.counter[3]]) {
+          while (nextCounter[3] < py.length && this.languageService.isChinesePinyinCharacter(py[nextCounter[3]]))
+            nextCounter[3] = nextCounter[3] + 1;
+        }
+        nextWord["py"] = py.substring(counter[3],nextCounter[3]);
+        this.charArr.push(nextWord);
+        this.counter = nextCounter;
+      }
+      if (this._song.translations)
+        this.translation = this.translation.split("\n");
+    }
+  }
+
+  public getTranslationLine(index) {
+    var count = 0;
+    for (var i=index;i>=0;i--) {
+      if (this.lyrics["tw"][i]=='\n') count++;
+    }
+    return this.translation[count];
   }
 
   public toggle(event) {

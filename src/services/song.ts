@@ -16,7 +16,15 @@ export class SongService {
     return this.http.get(`${this.config.apiEndpoint}/songs/${song.slug}/${locale}.txt`);
   }
 
-  getMusicFileUrl(song,bitRate = 128) {
-    return `${this.config.apiEndpoint}/songs/${song.slug}/${bitRate}.mp3`;
+  getMusicFileUrl(song) {
+    if (!song.bitRate)
+      song.bitRate = "128";
+    if (!song.format)
+      song.format = "mp3";
+    return `${this.config.apiEndpoint}/songs/${song.slug}/${song.bitRate}.${song.format}`;
+  }
+
+  getTranslationText(song, translation) {
+    return this.http.get(`${this.config.apiEndpoint}/songs/${song.slug}/${translation}.txt`);
   }
 }

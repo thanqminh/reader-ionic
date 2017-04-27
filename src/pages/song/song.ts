@@ -11,12 +11,14 @@ export class SongPage {
   public song;
   public textSize;
   public primaryLocale;
+  public showTranslation;
   public musicFileUrl;
 
   constructor(private songService: SongService,
               private nav: NavController,
               private navParams: NavParams) {
-    this.textSize = 30;
+    this.textSize = 20;
+    this.showTranslation = false;
     this.primaryLocale = "tw";
     this.song = navParams.get('song');
     this.musicFileUrl = this.songService.getMusicFileUrl(this.song);
@@ -37,5 +39,9 @@ export class SongPage {
       this.primaryLocale = "cn";
     else
       this.primaryLocale = "tw";
+  }
+
+  toggleTranslation() {
+    this.showTranslation = !this.showTranslation;
   }
 }

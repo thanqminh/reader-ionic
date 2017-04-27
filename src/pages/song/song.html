@@ -4,6 +4,9 @@
       {{ song.title}} - {{song.singer}}
     </ion-title>
     <ion-buttons end>
+      <button ion-button (click)="toggleTranslation()" >
+        vn
+      </button>
       <button ion-button (click)="switchLocale()" >
         {{ primaryLocale }}
       </button>
@@ -24,6 +27,6 @@
     </audio>
   </ion-card>
   <ion-card [style.font-size.px]="textSize" [ngClass]="'selectable'" class="padbot_200">
-    <tooltip-text [primaryLocale]="primaryLocale" [song]="song" [textSize]="textSize"></tooltip-text>
+    <tooltip-text [primaryLocale]="primaryLocale" [song]="song" [textSize]="textSize" [showTranslation]="showTranslation"></tooltip-text>
   </ion-card>
 </ion-content>
