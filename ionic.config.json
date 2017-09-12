@@ -1,7 +1,9 @@
 {
   "name": "reader-ionic",
   "app_id": "",
-  "v2": true,
-  "typescript": true,
-  "textSizeDefault": 30
+  "textSizeDefault": 30,
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
 }
